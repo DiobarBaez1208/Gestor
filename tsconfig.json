@@ -1,0 +1,322 @@
+{
+   "compilerOptions": {
+      // ? =====================================================================
+      // ? #MARK: OPCIONES DE PROYECTO
+      // ? =====================================================================
+      // "incremental": true,
+      /* Guarda un archivo .tsbuildinfo para permitir compilaciones incrementales
+       (solo recompila lo que cambió). Útil en proyectos grandes. */
+      // "composite": true,
+      /* Activa restricciones especiales para que este proyecto pueda ser
+       referenciado desde otros proyectos TypeScript mediante "project references". */
+      // "tsBuildInfoFile": "./.tsbuildinfo",
+      /* Indica dónde guardar el archivo de build incremental. */
+      // "disableSourceOfProjectReferenceRedirect": true,
+      /* Evita que TypeScript prefiera archivos fuente en proyectos referenciados.
+       En su lugar, usa los archivos .d.ts emitidos. */
+      // "disableSolutionSearching": true,
+      /* Evita que TypeScript automaticamente inspeccione y cargue otros proyectos
+       cuando se usan project references. */
+      // "disableReferencedProjectLoad": true,
+      /* Evita cargar proyectos referenciados automáticamente para reducir memoria
+       y acelerar inicialización. */
+      // ? =====================================================================
+      // ? #MARK: LENGUAJE Y ENTORNO
+      // ? =====================================================================
+      "target": "es2025",
+      /* Versión de JavaScript a generar. ES2024 = sintaxis moderna soportada
+       por Node.js actual. */
+      // "lib": [],
+      /* Lista de archivos de tipo (lib.d.ts) que describen el entorno estándar.
+       Si se deja vacío, TS elige los adecuados según "target". */
+      // "jsx": "preserve",
+      /* Controla el comportamiento de JSX al compilar. Para React o frameworks
+       móviles/web. */
+      // "libReplacement": true,
+      /* Activa reemplazo de librerías (experimental). */
+      // "experimentalDecorators": true,
+      /* Permite usar decoradores (sintaxis experimental de TypeScript). */
+      // "emitDecoratorMetadata": true,
+      /* Genera metadatos de tipos en decoradores (usado en frameworks como NestJS). */
+      // "jsxFactory": "",
+      /* Indica la función encargada de crear elementos JSX (p. ej. React.createElement). */
+      // "jsxFragmentFactory": "",
+      /* Indica la función usada para fragmentos JSX. */
+      // "jsxImportSource": "",
+      /* Indica qué módulo provee las funciones JSX cuando se usa la opción react-jsx. */
+      // "reactNamespace": "",
+      /* Define el espacio de nombres para createElement en JSX legacy. */
+      // "noLib": true,
+      /* Elimina TODAS las librerías estándar. Útil solo en entornos muy controlados. */
+      // "useDefineForClassFields": true,
+      /* Hace que los campos de clase sigan la semántica estándar de ECMAScript. */
+      // "moduleDetection": "auto",
+      /* Controla cómo TS decide si un archivo es módulo o script. */
+      // ? =====================================================================
+      // ? #MARK:  RESOLUCIÓN DE MÓDULOS
+      // ? =====================================================================
+      "module": "node16",
+      /* Genera salida en formato ESM compatible con Node.js moderno. */
+      "rootDir": "./src",
+      /* Directorio raíz donde se encuentran los archivos fuente. */
+      "moduleResolution": "node16",
+      /* Usa la resolución de módulos propia de Node.js en entornos ESM. */
+      "paths": {
+         "@core/*": [
+            "./src/core/*"
+         ],
+         "@src/*": [
+            "./src/*"
+         ],
+         "@env/*": [
+            "./src/config/env/*"
+         ],
+         "@helpers/*": [
+            "./src/helpers/*"
+         ],
+         "@utils/*": [
+            "./src/utils/*"
+         ],
+         "@middlewares/*": [
+            "./src/middlewares/*"
+         ],
+         "@config/*": [
+            "./src/config/*"
+         ],
+         "@shared/*": [
+            "./src/shared/*"
+         ],
+         "@interfaces": [
+            "./src/modules/types"
+         ],
+         "@models": [
+            "./src/modules/associations"
+         ],
+         "@modules/*": [
+            "./src/modules/*"
+         ]
+      },
+      /* Permite crear alias de importación como "@/utils/*". */
+      // "rootDirs": [],
+      /* Permite combinar varias carpetas como si fueran una sola. */
+      // "typeRoots": [],
+      /* Carpetas adicionales donde TS buscará definiciones .d.ts. */
+      "types": [
+         "node"
+      ],
+      /* Lista explícita de paquetes de tipos a incluir de forma automática.
+      
+         Mantener este arreglo vacío indica a TypeScript que NO cargue ningún 
+         paquete de tipados externos de manera forzada. Esto es crucial cuando
+         tus propias declaraciones .d.ts viven dentro de `src/`, porque:
+
+         1) Permite que TypeScript descubra automáticamente tus archivos de 
+            declaración internos mediante `include` o `rootDir`, sin 
+            sobre–escribirlos o ignorarlos accidentalmente.
+
+         2) Evita que TS incluya tipos innecesarios (por ejemplo @types/node,
+            @types/jest, etc.) a menos que tú los importes explícitamente o
+            realmente los necesites en este proyecto.
+
+         3) Previene colisiones entre tipos globales, especialmente en entornos
+            NodeNext / ESM donde los tipos de Node pueden interferir si no se
+            usan correctamente.
+
+         En resumen:
+         - Déjalo vacío cuando tu proyecto define sus propios tipos internos.
+         - Solo agrega algo aquí si NECESITAS forzar la carga de un paquete de
+           tipos (ej: ["node"] en un entorno de scripts, o ["jest"] para tests).
+      */
+      // "allowUmdGlobalAccess": true,
+      /* Permite acceder a variables UMD globales desde módulos. */
+      // "moduleSuffixes": [],
+      /* Sufijos adicionales que TS puede considerar para resolución de módulos. */
+      // "allowImportingTsExtensions": true,
+      /* Permite importar archivos .ts directamente, pero requiere configuraciones
+       adicionales y normalmente no se usa en producción. */
+      // "rewriteRelativeImportExtensions": true,
+      /* Reescribe extensiones .ts/.tsx en los imports para reemplazarlas por .js. */
+      // "resolvePackageJsonExports": true,
+      /* Usa el campo "exports" del package.json para resolver paquetes. */
+      // "resolvePackageJsonImports": true,
+      /* Usa el campo "imports" de package.json para resolver alias internos. */
+      // "customConditions": [],
+      /* Condiciones adicionales para que el resolver las tome en cuenta. */
+      // "noUncheckedSideEffectImports": true,
+      /* Muestra error si importas un archivo sin asignar el resultado
+       (import "archivo.css"). */
+      // "resolveJsonModule": true,
+      /* Permite importar archivos JSON como módulos de forma tipada. */
+      // "allowArbitraryExtensions": true,
+      /* Permite importar archivos con cualquier extensión si existe su .d.ts. */
+      // "noResolve": true,
+      /* Impide que importaciones o referencias amplíen el conjunto de archivos
+       incluidos en el proyecto. */
+      /* =====================================================================
+       SOPORTE PARA JAVASCRIPT PURO
+       ===================================================================== */
+      // "allowJs": true,
+      /* Permite mezclar archivos .js dentro del proyecto TypeScript. */
+      // "checkJs": true,
+      /* Ejecuta análisis de tipos dentro de archivos .js. */
+      // "maxNodeModuleJsDepth": 1,
+      /* Profundidad máxima para revisar archivos JS dentro de node_modules. */
+      // ? =====================================================================
+      // ? #MARK: GENERACIÓN DE ARCHIVOS (EMIT)
+      // ? =====================================================================
+      "declaration": true,
+      /* Genera un archivo .d.ts por cada archivo .ts.
+       Esto preserva los tipos en el build final. */
+      // "declarationMap": true,
+      /* Genera mapas de source para los .d.ts. */
+      "emitDeclarationOnly": false,
+      /* false = genera .js + .d.ts.
+       true = genera solo .d.ts y dejaría tu servidor sin código ejecutable. */
+      // "sourceMap": true,
+      /* Crea sourcemaps para debugging de los archivos .js generados. */
+      // "inlineSourceMap": true,
+      /* Inserta el sourcemap directamente dentro del .js generado. */
+      // "noEmit": true,
+      /* Impide generar cualquier archivo al compilar. */
+      // "outFile": "./",
+      /* Combina toda la salida en un único archivo .js (solo en módulos AMD o SystemJS). */
+      "outDir": "./dist",
+      /* Carpeta donde se guardan los archivos compilados. */
+      // "removeComments": true,
+      /* Elimina comentarios en los archivos compilados. */
+      // "importHelpers": true,
+      /* Usa helpers externos de tslib en lugar de incluirlos por archivo. */
+      // "downlevelIteration": true,
+      /* Emite código compatible con iteradores en versiones antiguas de JS. */
+      // "sourceRoot": "",
+      /* Indica al depurador dónde encontrar los archivos fuente originales. */
+      // "mapRoot": "",
+      /* Indica dónde se deben colocar los sourcemaps. */
+      // "inlineSources": true,
+      /* Incluye el contenido original del archivo en el sourcemap. */
+      // "emitBOM": true,
+      /* Inserta un Byte Order Mark UTF-8 al inicio del archivo. */
+      // "newLine": "crlf",
+      /* Define el tipo de salto de línea usado en los archivos generados. */
+      // "stripInternal": true,
+      /* Elimina declaraciones marcadas con @internal en los .d.ts. */
+      // "noEmitHelpers": true,
+      /* No genera helpers internos (como __extends). */
+      // "noEmitOnError": true,
+      /* No genera archivos si existe algún error de compilación. */
+      // "preserveConstEnums": true,
+      /* Evita que los const enum se expandan, manteniendo la referencia. */
+      "declarationDir": "./dist",
+      /* Directorio donde se guardarán las definiciones .d.ts. */
+      // ? =====================================================================
+      // ? #MARK:  CONSTRAINTS DE INTEROPERABILIDAD
+      // ? =====================================================================
+      // "isolatedModules": true,
+      /* Requiere que cada archivo pueda transpilarse sin depender de otros. */
+      // "verbatimModuleSyntax": true,
+      /* Preserva los imports/exports originales sin eliminarlos o transformarlos. */
+      // "isolatedDeclarations": true,
+      /* Requiere anotaciones suficientes para generar declaraciones .d.ts
+       de manera aislada. */
+      // "erasableSyntaxOnly": true,
+      /* Solo permite sintaxis que pueda eliminarse sin romper el JavaScript resultante. */
+      // "allowSyntheticDefaultImports": true,
+      /* Permite usar import x from "y" aunque el módulo no tenga default export. */
+      "esModuleInterop": true,
+      /* Genera código adicional para que los imports CommonJS funcionen
+       como imports ESM. */
+      // "preserveSymlinks": true,
+      /* Evita que Node.js resuelva symlinks a su ruta real. */
+      "forceConsistentCasingInFileNames": true,
+      /* Evita problemas con diferencias de mayúsculas/minúsculas entre sistemas
+       (Windows vs Linux). */
+      // ? =====================================================================
+      // ? #MARK:  OPCIONES DE ANÁLISIS Y TIPADO
+      // ? =====================================================================
+      "strict": true,
+      /* Activa TODAS las reglas estrictas de TypeScript para máxima seguridad. */
+      "noImplicitAny": true,
+      /* Error si una variable o función termina siendo de tipo any implícito. */
+      "strictNullChecks": true,
+      /* Obliga a ser explícito cuando null o undefined pueden aparecer. */
+      "strictFunctionTypes": true,
+      /* Verificación estricta al comparar funciones. */
+      "strictBindCallApply": true,
+      /* Asegura que bind(), call() y apply() reciban los parámetros correctos. */
+      "strictPropertyInitialization": true,
+      /* Obliga a inicializar todas las propiedades declaradas en una clase. */
+      "strictBuiltinIteratorReturn": true,
+      /* Hace que los iteradores nativos usen un tipo de retorno más exacto. */
+      "noImplicitThis": true,
+      /* Error si "this" no tiene un tipo definido. */
+      "useUnknownInCatchVariables": true,
+      /* Las excepciones en catch serán tipo unknown y no any. */
+      "alwaysStrict": true,
+      /* Emite siempre "use strict" en el código compilado. */
+      "noUnusedLocals": true,
+      /* Error si defines variables que nunca usas. */
+      "noUnusedParameters": true,
+      /* Error si declaras parámetros sin usarlos. */
+      // "exactOptionalPropertyTypes": true,
+      /* Cambia la semántica exacta de propiedades opcionales. */
+      "noImplicitReturns": true,
+      /* Error si una función no retorna en todos sus caminos de ejecución. */
+      "noFallthroughCasesInSwitch": true,
+      /* Evita los switch sin break accidental. */
+      // "noUncheckedIndexedAccess": true,
+      /* 
+         Controla si los accesos indexados (obj[key], arr[index]) deben devolver
+         siempre T | undefined. Cuando está en "true", TypeScript obliga a manejar
+         explícitamente el caso en el que la clave no exista, haciendo que todo acceso
+         dinámico requiera comprobaciones adicionales o tipos más amplios.
+
+         Desactivarlo ("false") permite un comportamiento más práctico y menos
+         ruidoso en proyectos que trabajan con objetos y arreglos de forma dinámica,
+         especialmente cuando las claves o índices provienen de operaciones como:
+         - iteración de keys
+         - normalizadores
+         - deep diffs
+         - DTOs parciales
+         - estructuras flexibles o generadas en tiempo de ejecución
+
+         Esta configuración mantiene el código más ergonómico sin sacrificar la
+         seguridad tipada central del proyecto, especialmente útil en sistemas donde
+         los objetos pueden tener forma parcial o cambiante (como un ERP).
+      */
+      // "noImplicitOverride": true,
+      /* Obliga a usar override en métodos que sobrescriben otros. */
+      // "noPropertyAccessFromIndexSignature": true,
+      /* Obliga a usar accesos explícitos cuando se usa index signatures. */
+      // "allowUnusedLabels": true,
+      /* Permite etiquetas que no se usan. */
+      // "allowUnreachableCode": true,
+      /* Permite código después de return o throw. */
+      // ? =====================================================================
+      // ?  #MARK:  COMPLETITUD
+      // ? =====================================================================
+      // "skipDefaultLibCheck": true,
+      /* Omite la verificación de las librerías estándar. */
+      "skipLibCheck": true
+      /* No revisa los .d.ts externos. Reduce tiempo de compilación
+       y evita errores molestos en los tipos de dependencias. */
+   },
+   "include": [
+      "src"
+      /* Indica a TypeScript que solo debe analizar y compilar 
+     los archivos dentro de la carpeta "src". 
+     Esto mantiene el proyecto limpio, ordenado y evita que el compilador 
+     intente procesar archivos innecesarios fuera del código fuente real. */
+   ],
+   "exclude": [
+      "dist",
+      /* Evita que TypeScript lea los archivos generados durante la compilación,
+     ya que contienen JavaScript y definiciones .d.ts que podrían causar
+     errores duplicados, ralentizar el compilado o generar conflictos 
+     con tus archivos fuente originales. */
+      "node_modules"
+      /* Excluye las dependencias externas del proyecto.
+     Aunque TypeScript normalmente las ignora por defecto, declararlo 
+     explícitamente mejora el rendimiento, reduce carga innecesaria
+     y mantiene la compilación enfocada únicamente en tu propio código. */
+   ]
+}
