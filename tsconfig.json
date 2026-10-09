@@ -68,6 +68,9 @@
          "@src/*": [
             "./src/*"
          ],
+         "@infrastructure/*": [
+            "./src/infrastructure/*"
+         ],
          "@env/*": [
             "./src/config/env/*"
          ],

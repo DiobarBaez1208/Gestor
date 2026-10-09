@@ -17,6 +17,7 @@
 import { createAuthenticationRoutes } from "./modules/authentication/presentation/http/authentication.routes";
 import { requestContextMiddleware } from "@core/middlewares/request-context.middleware";
 import { corsMiddleware } from "./shared/http/middlewares/cors/cors.middleware"
+import { connectDatabase } from "./infrastructure/db/sequelize/connection";
 import { helmetUtil } from "@utils/helmet/helmet";
 import express, { Express } from "express";
 import cookieParser from "cookie-parser";
@@ -26,6 +27,8 @@ import { httpLogger } from "@core/logging/http-logger";
 const createApp = async (): Promise<Express> => {
 
     const app: Express = express();
+
+    connectDatabase();
 
     /*
      * 1. Seguridad HTTP global.

@@ -1,5 +1,5 @@
 import { createAuthenticationMiddleware } from "@core/middlewares/authentication.middleware";
-import { JwtTokenService } from "../../infrastructure/security/jwt-token-service";
+import { JwtTokenService } from "../../infrastructure/security/jwt/jwt-token-service";
 import { validationMiddleware } from "@core/middlewares/validation.middleware";
 import { AuthenticationController } from "./authentication.controller";
 import { getSessionSchema } from "./validation/get-session.schema";

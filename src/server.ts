@@ -24,10 +24,11 @@ const createServer = async (): Promise<Server> => {
 
     const port: number = Number(appConfig.port);
 
+    console.log("diobar");
+
     if (!Number.isInteger(port) || port <= 0 || port > 65535) {
         throw new Error(`Puerto TCP inválido o no configurado: ${appConfig.port}`);
     }
-
 
     return new Promise<Server>((resolve, reject) => {
         const server: Server = app.listen(port);

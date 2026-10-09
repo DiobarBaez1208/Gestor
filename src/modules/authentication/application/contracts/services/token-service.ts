@@ -6,12 +6,6 @@ export interface TokenPayload {
 }
 
 export interface TokenService {
-
-    generateAccessToken(
-        payload: TokenPayload,
-    ): string;
-
-    verifyAccessToken(
-        token: string,
-    ): TokenPayload;
+    generateAccessToken( payload: TokenPayload ): string;
+    verifyAccessToken( token: string ): TokenPayload;
 }

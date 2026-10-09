@@ -1,0 +1,321 @@
+backend/
+│
+├── package.json
+├── tsconfig.json
+├── .env
+├── .env.example
+├── .gitignore
+│
+├── src/
+│   │
+│   ├── main.ts
+│   ├── app.ts
+│   │
+│   ├── core/
+│   │   │
+│   │   ├── config/
+│   │   │   ├── app-config.ts
+│   │   │   ├── environment.ts
+│   │   │   └── database-config.ts
+│   │   │
+│   │   ├── database/
+│   │   │   ├── connection.ts
+│   │   │   ├── database-migrator.ts
+│   │   │   └── unit-of-work.ts
+│   │   │
+│   │   ├── http/
+│   │   │   ├── value-objects/
+│   │   │   │	 ├── endpoint.interface.ts // Define el contrato genérico de un endpoint
+│   │   │   │	 ├── api-request.ts // Convierte EndpointSchema → Express Request
+│   │   │   │	 ├── api-response.ts // Convierte EndpointSchema → Express Response
+│   │   │   │	 ├── infer-endpoint.ts //  Convierte: Zod Endpoint Schema → EndpointSchema<TypeScript>
+│   │   │   │	 └── endpoint-zod-schema.ts // Define la forma que debe tener un schema Zod de endpoint
+│   │   │   ├── request-context.ts
+│   │   │   └── http-status.ts
+│   │   │
+│   │   ├── middleware/
+│   │   │   ├── authentication.middleware.ts
+│   │   │   ├── authorization.middleware.ts
+│   │   │   ├── validation.middleware.ts
+│   │   │   ├── request-id.middleware.ts
+│   │   │   ├── logging.middleware.ts
+│   │   │   └── error.middleware.ts
+│   │   │
+│   │   ├── mediator/
+│   │   │   ├── mediator.ts
+│   │   │   ├── mediator.types.ts
+│   │   │   └── mediator.registry.ts
+│   │   │
+│   │   ├── security/
+│   │   │   ├── security-config.ts
+│   │   │   ├── cors.ts
+│   │   │   ├── helmet.ts
+│   │   │   └── rate-limit.ts
+│   │   │
+│   │   ├── logging/
+│   │   │   ├── logger.ts
+│   │   │   ├── logger-config.ts
+│   │   │   └── log-context.ts
+│   │   │
+│   │   ├── errors/
+│   │   │   ├── application.error.ts
+│   │   │   ├── infrastructure.error.ts
+│   │   │   ├── http.error.ts
+│   │   │   └── error-handler.ts
+│   │   │
+│   │   └── observability/
+│   │       ├── health-check.ts
+│   │       ├── metrics.ts
+│   │       └── tracing.ts
+│   │
+│   └── modules/
+│       │
+│       ├── users/
+│       │   │
+│       │   ├── domain/
+│       │   │   ├── entities/
+│       │   │   │   └── user.aggregate.ts
+│       │   │   │
+│       │   │   ├── value-objects/
+│       │   │   │   ├── user-id.value-object.ts
+│       │   │   │   ├── user-email.value-object.ts
+│       │   │   │   └── user-name.value-object.ts
+│       │   │   │
+│       │   │   ├── services/
+│       │   │   │   └── user-domain-service.ts
+│       │   │   │
+│       │   │   ├── events/
+│       │   │   │   ├── user-created.event.ts
+│       │   │   │   └── user-updated.event.ts
+│       │   │   │
+│       │   │   └── errors/
+│       │   │       ├── domain.error.ts
+│       │   │       ├── user-not-found.error.ts
+│       │   │       └── invalid-user-data.error.ts
+│       │   │
+│       │   ├── application/
+│       │   │   │
+│       │   │   ├── use-cases/
+│       │   │   │   ├── commands/
+│       │   │   │   │   │
+│       │   │   │   │   ├── create-user/
+│       │   │   │   │   │   ├── create-user.use-case.ts
+│       │   │   │   │   │   ├── create-user.command.ts
+│       │   │   │   │   │   ├── create-user.schema.ts
+│       │   │   │   │   │   └── create-user.result.ts
+│       │   │   │   │   │
+│       │   │   │   │   ├── update-user/
+│       │   │   │   │   │   ├── update-user.use-case.ts
+│       │   │   │   │   │   ├── update-user.command.ts
+│       │   │   │   │   │   ├── update-user.schema.ts
+│       │   │   │   │   │   └── update-user.result.ts
+│       │   │   │   │   │
+│       │   │   │   │   └── delete-user/
+│       │   │   │   │       ├── delete-user.use-case.ts
+│       │   │   │   │       ├── delete-user.command.ts
+│       │   │   │   │       ├── delete-user.schema.ts
+│       │   │   │   │       └── delete-user.result.ts
+│       │   │   │   │
+│       │   │   │   └── queries/
+│       │   │   │       ├── get-user-profile/
+│       │   │   │       │   ├── get-user-profile.use-case.ts
+│       │   │   │       │   ├── get-user-profile.query.ts
+│       │   │   │       │   └── get-user-profile.result.ts
+│       │   │   │       │
+│       │   │   │       ├── get-user-activity/
+│       │   │   │       │   ├── get-user-activity.use-case.ts
+│       │   │   │       │   ├── get-user-activity.query.ts
+│       │   │   │       │   └── get-user-activity.result.ts
+│       │   │   │       │
+│       │   │   │       └── search-users/
+│       │   │   │           ├── search-users.use-case.ts
+│       │   │   │           ├── search-users.query.ts
+│       │   │   │           └── search-users.result.ts
+│       │   │   │
+│       │   │   ├── contracts/
+│       │   │   │   ├── repositories/
+│       │   │   │   │   ├── user-command.repository.ts
+│       │   │   │   │   ├── user-profile-query.repository.ts
+│       │   │   │   │   ├── user-activity-query.repository.ts
+│       │   │   │   │   └── user-search-query.repository.ts
+│       │   │   │   │
+│       │   │   │   └── services/
+│       │   │   │       └── user-authorization.service.ts
+│       │   │   │
+│       │   │   └── dto/
+│       │   │       ├── user-profile.dto.ts
+│       │   │       ├── user-activity.dto.ts
+│       │   │       └── user-list-item.dto.ts
+│       │   │
+│       │   ├── infrastructure/
+│       │   │   ├── persistence/
+│       │   │   │   └── mysql/
+│       │   │   │       ├── schema/
+│       │   │   │       │   └── users.table.ts
+│       │   │   │       ├── mappers/
+│       │   │   │       │   ├── user.mapper.ts
+│       │   │   │       │   └── user-row.mapper.ts
+│       │   │   │       ├── repositories/
+│       │   │   │       │   ├── mysql-user-command.repository.ts
+│       │   │   │       │   ├── mysql-user-profile-query.repository.ts
+│       │   │   │       │   ├── mysql-user-activity-query.repository.ts
+│       │   │   │       │   └── mysql-user-search-query.repository.ts
+│       │   │   │       └── queries/
+│       │   │   │           ├── user-profile.sql.ts
+│       │   │   │           ├── user-activity.sql.ts
+│       │   │   │           └── user-search.sql.ts
+│       │   │   │
+│       │   │   └── services/
+│       │   │       └── mysql-user-sequence.service.ts
+│       │   │
+│       │   └── presentation/
+│       │       └── http/
+│       │           ├── user.controller.ts
+│       │           ├── user.routes.ts
+│       │           ├── user.request.ts
+│       │           ├── user.response.ts
+│       │           └── user.http-schema.ts
+│       │
+│       ├── roles/
+│       │   ├── domain/
+│       │   │   ├── entities/
+│       │   │   │   └── role.aggregate.ts
+│       │   │   ├── value-objects/
+│       │   │   │   ├── role-id.value-object.ts
+│       │   │   │   └── role-name.value-object.ts
+│       │   │   ├── services/
+│       │   │   │   └── role-domain-service.ts
+│       │   │   ├── events/
+│       │   │   │   └── role-created.event.ts
+│       │   │   └── errors/
+│       │   │       ├── domain.error.ts
+│       │   │       └── role-not-found.error.ts
+│       │   │
+│       │   ├── application/
+│       │   │   ├── use-cases/
+│       │   │   │   ├── commands/
+│       │   │   │   │   └── create-role/
+│       │   │   │   │       ├── create-role.use-case.ts
+│       │   │   │   │       ├── create-role.command.ts
+│       │   │   │   │       ├── create-role.schema.ts
+│       │   │   │   │       └── create-role.result.ts
+│       │   │   │   │
+│       │   │   │   └── queries/
+│       │   │   │       └── get-role/
+│       │   │   │           ├── get-role.use-case.ts
+│       │   │   │           ├── get-role.query.ts
+│       │   │   │           └── get-role.result.ts
+│       │   │   │
+│       │   │   ├── contracts/
+│       │   │   │   └── repositories/
+│       │   │   │       ├── role-command.repository.ts
+│       │   │   │       └── role-query.repository.ts
+│       │   │   │
+│       │   │   └── dto/
+│       │   │       └── role.dto.ts
+│       │   │
+│       │   ├── infrastructure/
+│       │   │   └── persistence/
+│       │   │       └── mysql/
+│       │   │           ├── schema/
+│       │   │           │   └── roles.table.ts
+│       │   │           ├── mappers/
+│       │   │           │   └── role.mapper.ts
+│       │   │           ├── repositories/
+│       │   │           │   ├── mysql-role-command.repository.ts
+│       │   │           │   └── mysql-role-query.repository.ts
+│       │   │           └── queries/
+│       │   │               └── role.sql.ts
+│       │   │
+│       │   └── presentation/
+│       │       └── http/
+│       │           ├── role.controller.ts
+│       │           ├── role.routes.ts
+│       │           ├── role.request.ts
+│       │           ├── role.response.ts
+│       │           └── role.http-schema.ts
+│       │
+│       └── authentication/
+│           ├── domain/
+│           │   ├── entities/
+│           │   │   └── session.aggregate.ts
+│           │   ├── value-objects/
+│           │   │   ├── session-id.value-object.ts
+│           │   │   └── refresh-token.value-object.ts
+│           │   ├── services/
+│           │   │   └── authentication-domain-service.ts
+│           │   ├── events/
+│           │   │   ├── user-authenticated.event.ts
+│           │   │   └── session-created.event.ts
+│           │   └── errors/
+│           │       ├── authentication.error.ts
+│           │       ├── invalid-credentials.error.ts
+│           │       └── session-not-found.error.ts
+│           │
+│           ├── application/
+│           │   ├── use-cases/
+│           │   │   ├── commands/
+│           │   │   │   ├── login/
+│           │   │   │   │   ├── login.use-case.ts
+│           │   │   │   │   ├── login.command.ts
+│           │   │   │   │   ├── login.schema.ts
+│           │   │   │   │   └── login.result.ts
+│           │   │   │   │
+│           │   │   │   └── logout/
+│           │   │   │       ├── logout.use-case.ts
+│           │   │   │       ├── logout.command.ts
+│           │   │   │       ├── logout.schema.ts
+│           │   │   │       └── logout.result.ts
+│           │   │   │
+│           │   │   └── queries/
+│           │   │       └── get-session/
+│           │   │           ├── get-session.use-case.ts
+│           │   │           ├── get-session.query.ts
+│           │   │           └── get-session.result.ts
+│           │   │
+│           │   ├── contracts/
+│           │   │   ├── repositories/
+│           │   │   │   └── session.repository.ts
+│           │   │   └── services/
+│           │   │       ├── password-hasher.ts
+│           │   │       └── token-service.ts
+│           │   │
+│           │   └── dto/
+│           │       └── session.dto.ts
+│           │
+│           ├── infrastructure/
+│           │   ├── persistence/
+│           │   │   └── mysql/
+│           │   │       ├── schema/
+│           │   │       │   └── sessions.table.ts
+│           │   │       ├── mappers/
+│           │   │       │   └── session.mapper.ts
+│           │   │       └── repositories/
+│           │   │           └── mysql-session.repository.ts
+│           │   │
+│           │   └── security/
+│           │       ├── argon2-password-hasher.ts
+│           │       └── jwt-token.service.ts
+│           │
+│           └── presentation/
+│               └── http/
+│                   ├── authentication.controller.ts
+│                   ├── authentication.routes.ts
+│                   ├── authentication.request.ts
+│                   ├── authentication.response.ts
+│                   └── authentication.http-schema.ts
+│
+└── tests/
+    ├── unit/
+    │   ├── users/
+    │   ├── roles/
+    │   └── authentication/
+    │
+    ├── integration/
+    │   ├── database/
+    │   └── modules/
+    │
+    └── e2e/
+        ├── users/
+        ├── roles/
+        └── authentication/

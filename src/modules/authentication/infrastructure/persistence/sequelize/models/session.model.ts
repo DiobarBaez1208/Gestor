@@ -1,9 +1,5 @@
-import {
-    DataTypes,
-    Model,
-    InferAttributes,
-    InferCreationAttributes,
-} from "sequelize";
+import { DataTypes, Model, InferAttributes, InferCreationAttributes } from "sequelize";
+import { sequelize } from "@infrastructure/db/sequelize/sequelize-connetion";
 
 export class SessionModel extends Model<InferAttributes<SessionModel>, InferCreationAttributes<SessionModel>> {
     declare id: string;

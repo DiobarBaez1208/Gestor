@@ -16,20 +16,10 @@ const stream: StreamOptions = {
     },
 };
 
-
 const options: Options<IncomingMessage, ServerResponse> = {
     stream
 };
 
+const httpLogger: RequestHandler = morgan("combined", options);
 
-const httpLogger:
-    RequestHandler =
-    morgan(
-        "combined",
-        options,
-    );
-
-
-export {
-    httpLogger,
-};
+export { httpLogger };

@@ -76,6 +76,20 @@ Instalamos como dependencia de desarrollo una herramienta multiplataforma que no
 
 Este paquete emula el comportamiento del comando nativo de Unix rm -rf de manera portátil, garantizando que los scripts de limpieza funcionen de forma idéntica en sistemas operativos Windows, macOS y Linux. Se utiliza principalmente en la automatización de tareas (dentro de los scripts de package.json) para purgar por completo el directorio de salida (como la carpeta dist o build) antes de generar una nueva versión de producción, evitando así que archivos obsoletos o eliminados de compilaciones previas permanezcan en el resultado final.
 
+
+## Ejecución de TypeScript en Entornos de Desarrollo
+
+Instalamos la infraestructura de ejecución nativa para TypeScript que permite procesar y ejecutar archivos de código fuente directamente sin requerir una fase previa y manual de compilación a JavaScript, optimizando drásticamente el flujo de trabajo local.
+
+```cmd
+    npm i --save-dev --save-exact tsx
+```
+
+*Nota: Esta herramienta incluye soporte nativo y automático para TypeScript mediante la integración interna de transformadores de alto rendimiento, por lo que no requiere la instalación de definiciones de tipos adicionales en las dependencias de desarrollo.*
+
+Este componente funciona como un reemplazo directo y potenciado de los ejecutores tradicionales del ecosistema Node.js (como `node` o `ts-node`), actuando como un cargador dinámico (*runtime loader*) basado en el motor de transpilación ultrarrápido **esbuild**. Al ejecutar un script, el backend intercepta en memoria los archivos `.ts` o `.tsx`, remueve el sistema de tipos estáticos y resuelve los módulos bajo los estándares CommonJS y ECMAScript Modules (ESM) de forma transparente. Esto permite reflejar cambios en tiempo de ejecución de manera casi instantánea y con un consumo de recursos mínimo, manteniendo la fidelidad del tipado estático durante la escritura de código pero eliminando la latencia de compilación en el ciclo de desarrollo diario.
+
+
 ## Expansión de variables de entorno
 
 Instalamos como dependencia de desarrollo un complemento para dotenv que permite inyectar variables de entorno dentro de otras variables utilizando una sintaxis de interpolación.

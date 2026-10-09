@@ -1,0 +1,65 @@
+authentication/
+│
+├── domain/
+│   │
+│   ├── entities/
+│   │   └── session.aggregate.ts
+│   │
+│   ├── value-objects/
+│   │   ├── session-id.value-object.ts
+│   │   └── refresh-token.value-object.ts
+│   │
+│   └── errors/
+│       ├── authentication.error.ts
+│       ├── invalid-credentials.error.ts
+│       └── session-not-found.error.ts
+│
+├── application/
+│   │
+│   ├── commands/
+│   │   │
+│   │   ├── login/
+│   │   │   ├── login.command.ts
+│   │   │   ├── login.handler.ts
+│   │   │   └── login.result.ts
+│   │   │
+│   │   └── logout/
+│   │       ├── logout.command.ts
+│   │       ├── logout.handler.ts
+│   │       └── logout.result.ts
+│   │
+│   ├── queries/
+│   │   │
+│   │   └── get-session/
+│   │       ├── get-session.query.ts
+│   │       ├── get-session.handler.ts
+│   │       └── get-session.result.ts
+│   │
+│   └── contracts/
+│       │
+│       ├── repositories/
+│       │   ├── session.repository.ts
+│       │   └── user-authentication.repository.ts
+│       │
+│       └── services/
+│           ├── password-hasher.ts
+│           └── token-service.ts
+│
+├── infrastructure/
+│   ├── persistence/
+│   └── security/
+│
+└── presentation/
+    └── http/
+        ├── authentication.controller.ts
+        ├── authentication.routes.ts
+        ├── requests/
+        │   ├── login.request.ts
+        │   └── logout.request.ts
+        └── responses/
+        |   ├── login.response.ts
+        |   └── session.response.ts
+        └── validation/
+            ├── login.schema.ts
+            ├── logout.schema.ts
+            └── get-session.schema.ts

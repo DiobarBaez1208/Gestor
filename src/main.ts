@@ -13,12 +13,13 @@
  * - Previene que la aplicación intente arrancar con una configuración corrupta o incompleta gracias a la validación estricta del archivo `.env.example`.
  */
 
-import createServer from "./src/server";
+import createServer from "./server";
 import dotenvSafe from 'dotenv-safe'
 
 dotenvSafe.config()
 
 try { 
+    console.log("diobar");
     createServer() 
 } catch (error: unknown) {
     if (error instanceof Error) console.error(`An unexpected error occurred: ${error}`);

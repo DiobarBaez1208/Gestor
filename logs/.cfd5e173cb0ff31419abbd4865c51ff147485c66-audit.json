@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\Dioba\\Desktop\\Amphenol-TCS\\WEB\\gestor\\logs\\.cfd5e173cb0ff31419abbd4865c51ff147485c66-audit.json",
+    "files": [
+        {
+            "date": 1791044216758,
+            "name": "C:\\Users\\Dioba\\Desktop\\Amphenol-TCS\\WEB\\gestor\\logs\\rejections-2026-10-03.log",
+            "hash": "b24cea5fa29caada20d9361e32ae96838826348581a8d41d21e849dc5d1aefa3"
+        }
+    ],
+    "hashType": "sha256"
+}
